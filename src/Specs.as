@@ -243,8 +243,6 @@ public class Specs {
 		["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
 
 		// control - sprite
-		["switch fullscreen modes",						" ", 6, "Scratch.app.setPresentationMode"],
-		["-"],
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
 		["wait %n millisecs",						" ", 6, "waitm:elapsed:from:",	1000],
 		["-"],
@@ -268,8 +266,6 @@ public class Specs {
 		["-"],
 
 		// control - stage
-		["switch fullscreen modes",						" ", 106, "Scratch.app.setPresentationMode"],
-		["-"],
 		["wait %n secs",						" ", 106, "wait:elapsed:from:",	1],
 		["wait %n millisecs",						" ", 106, "wait:elapsed:from:",	1000],
 		["-"],
