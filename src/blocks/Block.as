@@ -248,7 +248,7 @@ public class Block extends Sprite {
 
 	public static function setFonts(labelSize:int, argSize:int, boldFlag:Boolean, vOffset:int):void {
 		var font:String = Resources.chooseFont([
-			'Lucida Grande', 'Verdana', 'Arial', 'DejaVu Sans']);
+			'San Fransisco']);
 		blockLabelFormat = new TextFormat(font, labelSize, 0xFFFFFF, boldFlag);
 		argTextFormat = new TextFormat(font, argSize, 0x505050, false);
 		Block.vOffset = vOffset;
@@ -424,7 +424,6 @@ public class Block extends Sprite {
 			if ('_mouse_' == v) argLabel = Translator.map('mouse-pointer');
 			if ('_myself_' == v) argLabel = Translator.map('myself');
 			if ('_stage_' == v) argLabel = Translator.map('Stage');
-			if ('_random_' == v) argLabel = Translator.map('random position');
 			if (args[i] is BlockArg) args[i].setArgValue(v, argLabel);
 		}
 		defaultArgValues = defaults;

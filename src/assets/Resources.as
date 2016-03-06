@@ -70,7 +70,7 @@ public class Resources {
 	// Embedded fonts
 	[Embed(source='fonts/DonegalOne-Regular.ttf', fontName='Donegal', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font1:Class;
 	[Embed(source='fonts/GloriaHallelujah.ttf', fontName='Gloria', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font2:Class;
-	[Embed(source='fonts/Helvetica-Bold.ttf', fontName='Helvetica', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font3:Class;
+	[Embed(source='fonts/SanFransisco.ttf', fontName='San Fransisco', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font3:Class;
 	[Embed(source='fonts/MysteryQuest-Regular.ttf', fontName='Mystery', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font4:Class;
 	[Embed(source='fonts/PermanentMarker.ttf', fontName='Marker', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font5:Class;
 	[Embed(source='fonts/Scratch.ttf', fontName='Scratch', embedAsCFF = 'false', advancedAntiAliasing = 'true')] private static const Font6:Class;

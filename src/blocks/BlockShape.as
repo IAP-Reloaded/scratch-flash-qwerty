@@ -156,7 +156,7 @@ public class BlockShape extends Shape {
 		var f:BevelFilter = new BevelFilter(1);
 		f.blurX = f.blurY = 3;
 		f.highlightAlpha = 0.3;
-		f.shadowAlpha = 0.6;
+		f.shadowAlpha = 0.0;
 		return [f];
 	}
 
@@ -299,8 +299,6 @@ public class BlockShape extends Shape {
 			[8, 0], [2, -2], [0, -3],
 			[3, 0], [-4, -5], [-4, 5], [3, 0],
 			[0, 3], [-8, 0], [0, 2]];
-		g.beginFill(0, 0.3);
-		drawPath(g, w - 15, h - 3, arrow); // shadow
 		g.beginFill(0xFFFFFF, 0.9);
 		drawPath(g, w - 16, h - 4, arrow); // white arrow
 		g.endFill();

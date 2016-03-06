@@ -5,8 +5,6 @@ package svgeditor.objs {
 import flash.display.BitmapData;
 import flash.geom.Rectangle;
 
-import svgeditor.BitmapEdit;
-
 public class SegmentationState {
 	public var scribbleBitmap:BitmapData;
 	public var unmarkedBitmap:BitmapData;
@@ -64,7 +62,6 @@ public class SegmentationState {
 	public function reset():void{
 		scribbleBitmap = null;
 		lastMask = null;
-		next = null;
         xMin = -1;
         yMin = -1;
         xMax = 0;
@@ -75,12 +72,5 @@ public class SegmentationState {
 		prev = next = null;
 	}
 
-	public function flip(vertical:Boolean):void{
-		scribbleBitmap = BitmapEdit.flipBitmap(vertical, scribbleBitmap);
-		lastMask = BitmapEdit.flipBitmap(vertical, lastMask);
-		unmarkedBitmap = BitmapEdit.flipBitmap(vertical, unmarkedBitmap);
-		costumeRect.x = unmarkedBitmap.width - costumeRect.x - costumeRect.width;
-		costumeRect.y = unmarkedBitmap.height - costumeRect.y - costumeRect.height;
-	}
 }
 }

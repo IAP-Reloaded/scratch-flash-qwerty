@@ -74,11 +74,7 @@ import watchers.ListWatcher;
 
 public class Scratch extends Sprite {
 	// Version
-<<<<<<< HEAD
-	public static const versionString:String = 'QWERTY 0.4';
-=======
-	public static const versionString:String = 'v444';
->>>>>>> LLK/master
+	public static const versionString:String = 'v443';
 	public static var app:Scratch; // static reference to the app, used for debugging
 
 	// Display modes
@@ -661,7 +657,7 @@ public class Scratch extends Sprite {
 		if (!evt.shiftKey && evt.charCode == 27) {
 			gh.escKeyDown();
 		}
-		// Escape exists presentation mode.
+		// Escape exits presentation mode.
 		else if ((evt.charCode == 27) && stagePart.isInPresentationMode()) {
 			setPresentationMode(false);
 			stagePart.exitPresentationMode();

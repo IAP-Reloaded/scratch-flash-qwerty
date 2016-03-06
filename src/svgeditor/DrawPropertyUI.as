@@ -38,7 +38,6 @@ import uiwidgets.*;
 public class DrawPropertyUI extends Sprite {
 
 	public static const ONCHANGE:String = 'onchange';
-	public static const ONCOLORCHANGE:String = 'oncolorchange';
 	public static const ONFONTCHANGE:String = 'onfontchange';
 
 	private var editor:ImageEdit;
@@ -225,10 +224,6 @@ public class DrawPropertyUI extends Sprite {
 		}
 	}
 
-	public function showColorUI(isColor:Boolean):void{
-		colorPicker.visible = isColor;
-	}
-
 	public function showStrokeUI(isStroke:Boolean, isEraser:Boolean):void {
 		eraserStrokeDisplay.visible = isEraser;
 		eraserStrokeMode = isEraser;
@@ -246,13 +241,6 @@ public class DrawPropertyUI extends Sprite {
 		if (!disableEvents) dispatchEvent(new Event(ONCHANGE));
 		if (fillUI.visible) updateFillUI();
 		if (shapeUI.visible) updateShapeUI();
-	}
-
-	public function onColorChange():void{
-		sendChangeEvent();
-		dispatchEvent(new Event(ONCOLORCHANGE));
-
-
 	}
 
 	private function makeFillUI():void {

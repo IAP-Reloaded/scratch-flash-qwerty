@@ -188,7 +188,7 @@ public class BlockArg extends Sprite {
 		var f:BevelFilter = new BevelFilter(1);
 		f.blurX = f.blurY = 2;
 		f.highlightAlpha = 0.3;
-		f.shadowAlpha = 0.6;
+		f.shadowAlpha = 0.0;
 		f.angle = 240;  // change light angle to show indentation
 		return [f];
 	}

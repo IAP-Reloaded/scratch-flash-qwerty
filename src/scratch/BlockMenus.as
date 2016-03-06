@@ -80,11 +80,10 @@ public class BlockMenus implements DragClient {
 		if (menuName == 'scrollAlign') menuHandler.scrollAlignMenu(evt);
 		if (menuName == 'sensor') menuHandler.sensorMenu(evt);
 		if (menuName == 'sound') menuHandler.soundMenu(evt);
-		if (menuName == 'spriteOnly') menuHandler.spriteMenu(evt, false, false, false, true, false);
-		if (menuName == 'spriteOrMouse') menuHandler.spriteMenu(evt, true, false, false, false, false);
-		if (menuName == 'location') menuHandler.spriteMenu(evt, true, false, false, false, true);
-		if (menuName == 'spriteOrStage') menuHandler.spriteMenu(evt, false, false, true, false, false);
-		if (menuName == 'touching') menuHandler.spriteMenu(evt, true, true, false, false, false);
+		if (menuName == 'spriteOnly') menuHandler.spriteMenu(evt, false, false, false, true);
+		if (menuName == 'spriteOrMouse') menuHandler.spriteMenu(evt, true, false, false, false);
+		if (menuName == 'spriteOrStage') menuHandler.spriteMenu(evt, false, false, true, false);
+		if (menuName == 'touching') menuHandler.spriteMenu(evt, true, true, false, false);
 		if (menuName == 'stageOrThis') menuHandler.stageOrThisSpriteMenu(evt);
 		if (menuName == 'stop') menuHandler.stopMenu(evt);
 		if (menuName == 'timeAndDate') menuHandler.timeAndDateMenu(evt);
@@ -122,11 +121,10 @@ public class BlockMenus implements DragClient {
 //			handler.scrollAlignMenu(evt);
 			handler.sensorMenu(evt);
 			handler.soundMenu(evt);
-			handler.spriteMenu(evt, false, false, false, true, false);
-			handler.spriteMenu(evt, true, false, false, false, false);
-			handler.spriteMenu(evt, true, false, false, false, true);
-			handler.spriteMenu(evt, false, false, true, false, false);
-			handler.spriteMenu(evt, true, true, false, false, false);
+			handler.spriteMenu(evt, false, false, false, true);
+			handler.spriteMenu(evt, true, false, false, false);
+			handler.spriteMenu(evt, false, false, true, false);
+			handler.spriteMenu(evt, true, true, false, false);
 			handler.stageOrThisSpriteMenu(evt);
 			handler.stopMenu(evt);
 			handler.timeAndDateMenu(evt);
@@ -178,7 +176,6 @@ public class BlockMenus implements DragClient {
 		case 'sprite':
 		case 'spriteOnly':
 		case 'spriteOrMouse':
-		case 'location':
 		case 'spriteOrStage':
 		case 'touching':
 			return false; // handled directly by menu code
@@ -299,7 +296,7 @@ public class BlockMenus implements DragClient {
 
 	private function keyMenu(evt:MouseEvent):void {
 		var ch:int;
-		var namedKeys:Array = ['space', 'up arrow', 'down arrow', 'right arrow', 'left arrow', 'any'];
+		var namedKeys:Array = ['up arrow', 'down arrow', 'right arrow', 'left arrow', 'space', 'escape', 'enter', 'backspace', 'any'];
 		var m:Menu = new Menu(setBlockArg, 'key');
 		for each (var s:String in namedKeys) m.addItem(s);
 		for (ch = 97; ch < 123; ch++) m.addItem(String.fromCharCode(ch)); // a-z
@@ -387,14 +384,13 @@ public class BlockMenus implements DragClient {
 		app.soundsPart.recordSound();
 	}
 
-	private function spriteMenu(evt:MouseEvent, includeMouse:Boolean, includeEdge:Boolean, includeStage:Boolean, includeSelf:Boolean, includeRandom:Boolean):void {
+	private function spriteMenu(evt:MouseEvent, includeMouse:Boolean, includeEdge:Boolean, includeStage:Boolean, includeSelf:Boolean):void {
 		function setSpriteArg(s:*):void {
 			if (blockArg == null) return;
 			if (s == 'edge') blockArg.setArgValue('_edge_', Translator.map('edge'));
 			else if (s == 'mouse-pointer') blockArg.setArgValue('_mouse_', Translator.map('mouse-pointer'));
 			else if (s == 'myself') blockArg.setArgValue('_myself_', Translator.map('myself'));
 			else if (s == 'Stage') blockArg.setArgValue('_stage_', Translator.map('Stage'));
-			else if (s == 'random position') blockArg.setArgValue('_random_', Translator.map('random position'));
 			else blockArg.setArgValue(s);
 			if (block.op == 'getAttribute:of:') {
 				var obj:ScratchObj = app.stagePane.objNamed(s);
@@ -409,7 +405,6 @@ public class BlockMenus implements DragClient {
 		var spriteNames:Array = [];
 		var m:Menu = new Menu(setSpriteArg, 'sprite');
 		if (includeMouse) m.addItem(Translator.map('mouse-pointer'), 'mouse-pointer');
-		if (includeRandom) m.addItem(Translator.map('random position'), 'random position');
 		if (includeEdge) m.addItem(Translator.map('edge'), 'edge');
 		m.addLine();
 		if (includeStage) {
@@ -785,6 +780,8 @@ public class BlockMenus implements DragClient {
 			else setBlockArg(selection);
 		}
 		var msgNames:Array = app.runtime.collectBroadcasts();
+		if (msgNames.indexOf('message1') <= -1) msgNames.push('message1');
+		msgNames.sort();
 
 		var m:Menu = new Menu(broadcastMenuSelection, 'broadcast');
 		for each (var msg:String in msgNames) m.addItem(msg);

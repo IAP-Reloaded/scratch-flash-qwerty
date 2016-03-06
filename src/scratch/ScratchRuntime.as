@@ -565,7 +565,6 @@ public class ScratchRuntime {
 		allStacksAndOwnersDo(startMatchingKeyHats);
 	}
 
-	// Returns a sorted array of all messages in use, or a single-element array containing the default message name.
 	public function collectBroadcasts():Array {
 		function addBlock(b:Block):void {
 			if ((b.op == 'broadcast:') ||
@@ -586,11 +585,8 @@ public class ScratchRuntime {
 			var b:Block = palette.getChildAt(i) as Block;
 			if (b) addBlock(b);
 		}
-		if (result.length > 0) {
-			result.sort();
-			return result;
-		}
-		return [Translator.map('message1')];
+		result.sort();
+		return result;
 	}
 
 	public function hasUnofficialExtensions():Boolean {
@@ -1078,7 +1074,7 @@ public class ScratchRuntime {
 		var obj:ScratchObj = app.viewedObj();
 		var oldName:String = obj.objName;
 		obj.objName = '';
-		newName = app.stagePane.unusedSpriteName(newName || Translator.map('Sprite1'));
+		newName = app.stagePane.unusedSpriteName(newName || 'Sprite1');
 		obj.objName = newName;
 		for each (var lw:ListWatcher in app.viewedObj().lists) {
 			lw.updateTitle();
@@ -1216,7 +1212,7 @@ public class ScratchRuntime {
 	}
 
 	public function allUsesOfSprite(spriteName:String):Array {
-		var spriteMenus:Array = ["spriteOnly", "spriteOrMouse", "spriteOrStage", "touching", "location"];
+		var spriteMenus:Array = ["spriteOnly", "spriteOrMouse", "spriteOrStage", "touching"];
 		var result:Array = [];
 		for each (var stack:Block in allStacks()) {
 			// for each block in stack

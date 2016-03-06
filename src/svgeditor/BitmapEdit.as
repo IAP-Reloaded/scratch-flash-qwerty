@@ -67,10 +67,10 @@ public class BitmapEdit extends ImageEdit {
 
 	protected override function getToolDefs():Array { return bitmapTools }
 
-	protected override function onDrawPropsChange(e:Event):void {
+	protected override function onColorChange(e:Event):void {
 		var pencilTool:BitmapPencilTool = currentTool as BitmapPencilTool;
 		if (pencilTool) pencilTool.updateProperties();
-		super.onDrawPropsChange(e);
+		super.onColorChange(e);
 	}
 
 	public override function shutdown():void {
@@ -136,11 +136,10 @@ public class BitmapEdit extends ImageEdit {
 	}
 
 	protected override function selectHandler(evt:Event = null):void {
-		if ((currentTool is ObjectTransformer && !(currentTool as ObjectTransformer).getSelection() && (currentTool as ObjectTransformer).isChanged)) {
+		if ((currentTool is ObjectTransformer && !(currentTool as ObjectTransformer).getSelection())) {
 			// User clicked away from the object transformer, so bake it in.
 			bakeIntoBitmap();
 			saveToCostume();
-			(currentTool as ObjectTransformer).reset();
 		}
 
 		var cropToolEnabled:Boolean = (currentTool is ObjectTransformer &&
@@ -190,10 +189,9 @@ public class BitmapEdit extends ImageEdit {
 		sel.redraw();
 		sel.x = destP.x - c.width() / 2;
 		sel.y = destP.y - c.height() / 2;
-
-		setToolMode('bitmapSelect');
 		workArea.getContentLayer().addChild(sel);
 
+		setToolMode('bitmapSelect');
 		(currentTool as ObjectTransformer).select(new Selection([sel]));
 	}
 
@@ -249,9 +247,6 @@ public class BitmapEdit extends ImageEdit {
 				// User was editing an object and switched tools, bake the object
 				bakeIntoBitmap();
 				saveToCostume();
-				if(segmentationTool){
-					segmentationTool.refresh();
-				}
 			}
 		}
 	}
@@ -362,19 +357,7 @@ public class BitmapEdit extends ImageEdit {
 	}
 
 	protected override function flipAll(vertical:Boolean):void {
-		workArea.getBitmap().bitmapData = flipBitmap(vertical, workArea.getBitmap().bitmapData);
-		if(segmentationTool && targetCostume.segmentationState.lastMask){
-			targetCostume.segmentationState.recordForUndo();
-			targetCostume.nextSegmentationState();
-			targetCostume.segmentationState.flip(vertical);
-			segmentationTool.refreshSegmentation();
-		}
-		else{
-			saveToCostume();
-		}
-	}
-
-	public static function flipBitmap(vertical:Boolean, oldBM:BitmapData):BitmapData{
+		var oldBM:BitmapData = workArea.getBitmap().bitmapData;
 		var newBM:BitmapData = new BitmapData(oldBM.width, oldBM.height, true, 0);
 		var m:Matrix = new Matrix();
 		if (vertical) {
@@ -386,7 +369,8 @@ public class BitmapEdit extends ImageEdit {
 			m.translate(oldBM.width, 0);
 		}
 		newBM.draw(oldBM, m);
-		return newBM;
+		workArea.getBitmap().bitmapData = newBM;
+		saveToCostume();
 	}
 
 	private function getBitmapSelection():SVGBitmap {
@@ -426,9 +410,7 @@ public class BitmapEdit extends ImageEdit {
 	override protected function clearSelection():void {
 		// Re-activate the tool that (looks like) it's currently active
 		// If there's an uncommitted action, this will commit it in the same way that changing the tool would.
-		if(!segmentationTool){
-			setToolMode(lastToolMode ? lastToolMode : toolMode, true);
-		}
+		setToolMode(lastToolMode ? lastToolMode : toolMode, true);
 	}
 
 	public override function canClearCanvas():Boolean {

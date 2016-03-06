@@ -102,7 +102,7 @@ public class AskPrompter extends Sprite {
 
 		var f:BevelFilter = new BevelFilter();
 		f.angle = 225;
-		f.shadowAlpha = 0.6;
+		f.shadowAlpha = 0.0;
 		f.distance = 3;
 		f.strength = 0.4;
 		f.blurX = f.blurY = 0;

@@ -104,7 +104,7 @@ public class Specs {
 		// Block icons are 2x resolution to look better when scaled.
 		var icon:Bitmap;
 		if (name == "greenFlag") icon = Resources.createBmp('flagIcon');
-		if (name == "stop") icon = Resources.createBmp('stopIcon');
+		if (name == "stopSign") icon = Resources.createBmp('stopIcon');
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
 		if (icon != null) icon.scaleX = icon.scaleY = 0.3;
@@ -117,23 +117,23 @@ public class Specs {
 		["move %n steps",						" ", 1, "forward:",					10],
 		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				15],
 		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				15],
-		["--"],
+		["-"],
 		["point in direction %d.direction",		" ", 1, "heading:",					90],
 		["point towards %m.spriteOrMouse",		" ", 1, "pointTowards:",			""],
-		["--"],
+		["-"],
 		["go to x:%n y:%n",						" ", 1, "gotoX:y:"],
-		["go to %m.location",				" ", 1, "gotoSpriteOrMouse:",		"mouse-pointer"],
+		["go to %m.spriteOrMouse",				" ", 1, "gotoSpriteOrMouse:",		"mouse-pointer"],
 		["glide %n secs to x:%n y:%n",			" ", 1, "glideSecs:toX:y:elapsed:from:"],
-		["--"],
+		["-"],
 		["change x by %n",						" ", 1, "changeXposBy:",			10],
 		["set x to %n",							" ", 1, "xpos:",					0],
 		["change y by %n",						" ", 1, "changeYposBy:",			10],
 		["set y to %n",							" ", 1, "ypos:",					0],
-		["--"],
+		["-"],
 		["if on edge, bounce",					" ", 1, "bounceOffEdge"],
 		["-"],
 		["set rotation style %m.rotationStyle",	" ", 1, "setRotationStyle", 		"left-right"],
-		["--"],
+		["-"],
 		["x position",							"r", 1, "xpos"],
 		["y position",							"r", 1, "ypos"],
 		["direction",							"r", 1, "heading"],
@@ -153,7 +153,6 @@ public class Specs {
 		["switch costume to %m.costume",		" ", 2, "lookLike:",				"costume1"],
 		["next costume",						" ", 2, "nextCostume"],
 		["previous costume",						" ", 2, "prevCostume"],
-		["test hello world",						" ", 13, "helloWorld"],
 		["switch backdrop to %m.backdrop",		" ", 2, "startScene", 				"backdrop1"],
 		["-"],
 		["change %m.effect effect by %n",		" ", 2, "changeGraphicEffect:by:",	"color", 25],
@@ -230,21 +229,30 @@ public class Specs {
 
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
+		["when @stopSign clicked",				"h", 5, "whenStopSign"],
 		["restart project",				" ", 5, "startGreenFlags"],
+		["-"],
 		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
+		["-"],
 		["when this sprite clicked",			"h", 5, "whenClicked"],
 		["when this sprite right clicked",			"h", 5, "whenRightClicked"],
+		["when Stage right clicked",			"h", 105, "whenRightClicked"],
+		["-"],
 		["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
 		["--"],
+		["when %m.triggerSensor > %n",			"h", 5, "whenSensorLessThan", "loudness", 10],
+		["when %m.triggerSensor ≤ %n",			"h", 5, "whenSensorLEThan", "loudness", 10],
+		["when %m.triggerSensor = %n",			"h", 5, "whenSensorEquals", "loudness", 10],
+		["when %m.triggerSensor ≠ %n",			"h", 5, "whenSensorNotEquals", "loudness", 10],
+		["when %m.triggerSensor ≥ %n",			"h", 5, "whenSensorGEThan", "loudness", 10],
 		["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
 		["--"],
-		["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
+		["when %m.broadcast sent",			"h", 5, "whenIReceive",			""],
 		["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
 		["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
 
 		// control - sprite
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
-		["wait %n millisecs",						" ", 6, "waitm:elapsed:from:",	1000],
 		["-"],
 		["repeat %n",							"c", 6, "doRepeat", 10],
 		["forever",								"cf",6, "doForever"],
@@ -267,7 +275,6 @@ public class Specs {
 
 		// control - stage
 		["wait %n secs",						" ", 106, "wait:elapsed:from:",	1],
-		["wait %n millisecs",						" ", 106, "wait:elapsed:from:",	1000],
 		["-"],
 		["repeat %n",							"c", 106, "doRepeat", 10],
 		["forever",								"cf",106, "doForever"],
@@ -286,6 +293,8 @@ public class Specs {
 		["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
 
 		// sensing
+		["random color",		"r", 7, "randomcolor",			""],
+		["-"],
 		["touching %m.touching?",				"b", 7, "touching:",			""],
 		["touching color %c?",					"b", 7, "touchingColor:"],
 		["color %c is touching %c?",			"b", 7, "color:sees:"],
@@ -307,10 +316,7 @@ public class Specs {
 		["set video transparency to %n%",		" ", 7, "setVideoTransparency",		50],
 		["-"],
 		["timer",								"r", 7, "timer"],
-		["timer running?",								"r", 7, "timerRunning"],
 		["reset timer",							" ", 7, "timerReset"],
-		["stop timer",							" ", 7, "timerStop"],
-		["start timer",							" ", 7, "timerStart"],
 		["-"],
 		["%m.attribute of %m.spriteOrStage",	"r", 7, "getAttribute:of:"],
 		["-"],
@@ -341,10 +347,7 @@ public class Specs {
 		["set video transparency to %n%",		" ", 107, "setVideoTransparency",	50],
 		["-"],
 		["timer",								"r", 107, "timer"],
-		["timer running?",								"r", 107, "timerRunning"],
 		["reset timer",							" ", 107, "timerReset"],
-		["stop timer",							" ", 107, "timerStop"],
-		["start timer",							" ", 107, "timerStart"],
 		["-"],
 		["%m.attribute of %m.spriteOrStage",	"r", 107, "getAttribute:of:"],
 		["-"],
@@ -355,18 +358,23 @@ public class Specs {
 
 		// operators
 		["true",								"b", 8, true],
-		["false",								"b", 8, false]
+		["false",								"b", 8, false],
+		["-"],
+		["negate %n",						"r", 8, "negate",		"1"],
 		["-"],
 		["%n + %n",								"r", 8, "+",					"", ""],
 		["%n - %n",								"r", 8, "-",					"", ""],
 		["%n * %n",								"r", 8, "*",					"", ""],
-		["%n / %n",								"r", 8, "/",					"", ""],
+		["%n ÷ %n",								"r", 8, "/",					"", ""],
+		["remainder of %n ÷ %n",							"r", 8, "%",					"", ""],
 		["-"],
 		["pick random %n to %n",		"r", 8, "randomFrom:to:",		1, 10],
 		["-"],
 		["%s < %s",								"b", 8, "<",					"", ""],
+		["%s ≤ %s",								"b", 8, "<=",					"", ""],
 		["%s = %s",								"b", 8, "=",					"", ""],
 		["%s ≠ %s",								"b", 8, "=/=",					"", ""],
+		["%s ≥ %s",								"b", 8, ">=",					"", ""],
 		["%s > %s",								"b", 8, ">",					"", ""],
 		["-"],
 		["%b and %b",							"b", 8, "&"],
@@ -374,12 +382,11 @@ public class Specs {
 		["not %b",								"b", 8, "not"],
 		["-"],
 		["join %s %s",							"r", 8, "concatenate:with:",	"hello ", "world"],
-		["letter %n of %s",						"r", 8, "letter:of:",			1, "world"],
+		["letter %n of %s",						"r", 8, "letter:of:",			1, "hello world"],
 		["length of %s",						"r", 8, "stringLength:",		"world"],
 		["%s as Unicode",						"r", 8, "convertUnicode",		"A"],
 		["%n as string",						"r", 8, "convertString",		"65"],
 		["-"],
-		["%n mod %n",							"r", 8, "%",					"", ""],
 		["round %n",							"r", 8, "rounded", 				""],
 		["-"],
 		["%m.mathOp of %n",						"r", 8, "computeFunction:of:",	"sqrt", 9],
@@ -419,12 +426,6 @@ public class Specs {
 		["next background",						" ", 98, "nextBackground"],
 		["forever if %b",						"cf", 6, "doForeverIf"],
 
-		// testing and experimental control prims
-		["noop",								"r", 99, "COUNT"],
-		["counter",								"r", 99, "COUNT"],
-		["clear counter",						" ", 99, "CLR_COUNT"],
-		["incr counter",						" ", 99, "INCR_COUNT"],
-
 		// stage motion (scrolling)
 		["scroll right %n",						" ", 99, "scrollRight",		10],
 		["scroll up %n",						" ", 99, "scrollUp",		10],
@@ -432,7 +433,16 @@ public class Specs {
 		["x scroll",							"r", 99, "xScroll"],
 		["y scroll",							"r", 99, "yScroll"],
 
-		// other obsolete blocks from alpha/beta
+
+		// debug
+		["%s",					" ", 13, "",						"Insert comment here"],
+		["test hello world",						" ", 13, "helloWorld"],
+		["-"],
+		["noop",								"r", 13, "COUNT"],
+		["counter",								"r", 13, "COUNT"],
+		["clear counter",						" ", 13, "CLR_COUNT"],
+		["increase counter",						" ", 13, "INCR_COUNT"],
+		
 	];
 
 	public static var extensionSpecs:Array = ["when %m.booleanSensor", "when %m.sensor %m.lessMore %n", "sensor %m.booleanSensor?", "%m.sensor sensor value", "turn %m.motor on for %n secs", "turn %m.motor on", "turn %m.motor off", "set %m.motor power to %n", "set %m.motor2 direction to %m.motorDirection", "when distance %m.lessMore %n", "when tilt %m.eNe %n", "distance", "tilt"];

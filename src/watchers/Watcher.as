@@ -278,7 +278,7 @@ public class Watcher extends Sprite implements DragClient {
 		slider = new Shape(); // slider is drawn by fixLayout()
 		var f:BevelFilter = new BevelFilter(2);
 		f.angle = 225;
-		f.shadowAlpha = 0.5;
+		f.shadowAlpha = 0.0;
 		f.highlightAlpha = 0.5;
 		slider.filters = [f];
 		addChild(slider);

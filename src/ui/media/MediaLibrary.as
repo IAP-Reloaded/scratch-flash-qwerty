@@ -690,22 +690,15 @@ spriteFeaturesFilter.visible = false; // disable features filter for now
 		} else { // try to read data as an MP3 file
 			if (app.lp) app.lp.setTitle('Converting mp3 file...');
 			var sound:Sound;
-			function uploadConvertedSound(out:ScratchSound):void {
-				snd = out;
-				if (snd && snd.sampleCount > 0) {
-					startSoundUpload(out, origName, uploadComplete);
-				}
-				else {
-					app.removeLoadProgressBox();
-					DialogBox.notify('Error decoding sound', 'Sorry, Scratch was unable to load the sound ' + sndName + '.', Scratch.app.stage);
-				}
-			}
 			SCRATCH::allow3d {
 				sound = new Sound();
 				try {
 					data.position = 0;
 					sound.loadCompressedDataFromByteArray(data, data.length);
-					MP3Loader.extractSamples(origName, sound, sound.length * 44.1, uploadConvertedSound);
+					MP3Loader.extractSamples(origName, sound, sound.length * 44.1, function (out:ScratchSound):void {
+						snd = out;
+						startSoundUpload(out, origName, uploadComplete);
+					});
 				}
 				catch(e:Error) {
 					trace(e);
@@ -715,7 +708,10 @@ spriteFeaturesFilter.visible = false; // disable features filter for now
 
 			if (!sound)
 				setTimeout(function():void {
-					MP3Loader.convertToScratchSound(sndName, data, uploadConvertedSound);
+					MP3Loader.convertToScratchSound(sndName, data, function(s:ScratchSound):void {
+						snd = s;
+						startSoundUpload(s, origName, uploadComplete);
+					});
 				}, 1);
 		}
 	}
