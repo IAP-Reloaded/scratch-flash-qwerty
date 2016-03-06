@@ -154,7 +154,6 @@ public class Menu extends Sprite {
 			if (totalH > maxHeight) break;
 		}
 		makeArrows(maxW);
-		addShadowFilter();
 	}
 
 	private function makeArrows(w:int):void {
@@ -220,14 +219,6 @@ public class Menu extends Sprite {
 			downArrow.y = this.height - 5;
 			addChild(downArrow);
 		}
-	}
-
-	private function addShadowFilter():void {
-		var f:DropShadowFilter = new DropShadowFilter();
-		f.blurX = f.blurY = 5;
-		f.distance = 3;
-		f.color = 0x333333;
-		filters = [f];
 	}
 
 }}
