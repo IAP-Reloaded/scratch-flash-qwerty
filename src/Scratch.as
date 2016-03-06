@@ -1040,6 +1040,11 @@ public class Scratch extends Sprite {
 	// -----------------------------
 	// Menus
 	//------------------------------
+	public function showInfoMenu(b:*):void {
+		var m:Menu = new Menu(null, 'Info', CSS.topBarColor(), 28);
+		m.addItem('QWERTY 2', versionNumber);
+		m.addItem('Beta 3', betaNumber);
+	}
 	public function showFileMenu(b:*):void {
 		var m:Menu = new Menu(null, 'File', CSS.topBarColor(), 28);
 		m.addItem('New', createNewProject);
