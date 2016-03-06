@@ -207,6 +207,7 @@ public class TopBarPart extends UIPart {
 	protected function addTextButtons():void {
 		addChild(fileMenu = makeMenuButton('File', app.showFileMenu, true));
 		addChild(editMenu = makeMenuButton('Edit', app.showEditMenu, true));
+		addChild(editMenu = makeMenuButton('Info', app.showInfoMenu, true));
 	}
 
 	private function addToolButtons():void {
