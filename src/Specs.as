@@ -49,32 +49,32 @@ public class Specs {
 	public static const listCategory:int = 12;
 	public static const extensionsCategory:int = 20;
 
-	public static var variableColor:int = 0xEE7D16; // Scratch 1.4: 0xF3761D
-	public static var listColor:int = 0xCC5B22; // Scratch 1.4: 0xD94D11
-	public static var procedureColor:int = 0x632D99; // 0x531E99;
+	public static var variableColor:int = 0xFF5722; // Scratch 1.4: 0xF3761D
+	public static var listColor:int = 0xBF360C; // Scratch 1.4: 0xD94D11
+	public static var procedureColor:int = 0x673AB7; // 0x531E99;
 	public static var parameterColor:int = 0x5947B1;
-	public static var extensionsColor:int = 0x4B4A60; // 0x72228C; // 0x672D79;
+	public static var extensionsColor:int = 0x607D8B; // 0x72228C; // 0x672D79;
 
-	private static const undefinedColor:int = 0xD42828;
+	private static const undefinedColor:int = 0xF4433;
 
 	public static const categories:Array = [
 	 // id   category name	color
-		[0,  "undefined",	0xD42828],
-		[1,  "Motion",		0x4a6cd4],
-		[2,  "Looks",		0x8a55d7],
-		[3,  "Sound",		0xbb42c3],
-		[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
-		[5,  "Events",		0xc88330],
-		[6,  "Control",		0xe1a91a],
-		[7,  "Sensing",		0x2ca5e2],
-		[8,  "Operators",	0x5cb712],
-		[9,  "Data",		variableColor],
-		[10, "More Blocks",	procedureColor],
+		[0,  "undefined",	0xF4433],//m
+		[1,  "Motion",		0x3F51B5],//m
+		[2,  "Looks",		0x673AB7],//m
+		[3,  "Sound",		0x9C27B0],//m
+		[4,  "Pen",			0x009688], //m, Scratch 1.4: 0x009870
+		[5,  "Events",		0xF57F17],//m
+		[6,  "Control",		0xFBC02D],//m
+		[7,  "Sensing",		0x03A9F4],//m
+		[8,  "Operators",	0x8BC34A],//m
+		[9,  "Data",		variableColor],//m
+		[10, "More Blocks",	procedureColor],//m
 		[11, "Parameter",	parameterColor],
-		[12, "List",		listColor],
-		[20, "Extension",	extensionsColor],
-                [13, "Debug",     0xD42828],
-                [14, "Internet",     0xf03590],
+		[12, "List",		listColor],//m
+		[20, "Extension",	extensionsColor],//m
+                [13, "Debug",     0xF4433], //m
+                [14, "Internet",     0xE91E63], //m
 	];
 
 	public static function blockColor(categoryID:int):int {
