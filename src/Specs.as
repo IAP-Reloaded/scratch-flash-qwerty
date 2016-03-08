@@ -434,7 +434,7 @@ public class Specs {
 		["y scroll",							"r", 99, "yScroll"],
 
 		// internet
-		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/],
+		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/"],
 
 		// debug
 		["comment %s",					" ", 13, "",						"Insert comment here"],
@@ -448,4 +448,4 @@ public class Specs {
 
 	public static var extensionSpecs:Array = ["when %m.booleanSensor", "when %m.sensor %m.lessMore %n", "sensor %m.booleanSensor?", "%m.sensor sensor value", "turn %m.motor on for %n secs", "turn %m.motor on", "turn %m.motor off", "set %m.motor power to %n", "set %m.motor2 direction to %m.motorDirection", "when distance %m.lessMore %n", "when tilt %m.eNe %n", "distance", "tilt"];
 
-}}
+}
