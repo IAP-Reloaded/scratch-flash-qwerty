@@ -107,7 +107,7 @@ public class Specs {
 		if (name == "stopSign") icon = Resources.createBmp('stopIcon');
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
-		if (icon != null) icon.scaleX = icon.scaleY = 0.3;
+		if (icon != null) icon.scaleX = icon.scaleY = 0.5;
 		return icon;
 	}
 
