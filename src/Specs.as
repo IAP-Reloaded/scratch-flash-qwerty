@@ -435,10 +435,11 @@ public class Specs {
 
 
 		// debug
-		["%s",					" ", 13, "",						"Insert comment here"],
+		["comment %s",					" ", 13, "",						"Insert comment here"],
 		["test hello world",						" ", 13, "helloWorld"],
 		["-"],
 		["noop",								"r", 13, "COUNT"],
+		["-"],
 		["counter",								"r", 13, "COUNT"],
 		["clear counter",						" ", 13, "CLR_COUNT"],
 		["increase counter",						" ", 13, "INCR_COUNT"],
