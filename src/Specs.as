@@ -434,6 +434,7 @@ public class Specs {
 		["y scroll",							"r", 99, "yScroll"],
 
 		// internet
+		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/],
 
 		// debug
 		["comment %s",					" ", 13, "",						"Insert comment here"],
