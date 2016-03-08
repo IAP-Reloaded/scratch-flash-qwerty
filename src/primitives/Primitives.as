@@ -47,7 +47,7 @@ public class Primitives {
 	}
 
 	public function addPrimsTo(primTable:Dictionary):void {
-		primTable["goToSite"]				= function(b:*):* { navigateToURL(interp.arg(b, 0), "_self") };
+		primTable["openURL"]		= primURL;
 
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
@@ -221,5 +221,10 @@ public class Primitives {
 		clone.parent.removeChild(clone);
 		app.interp.stopThreadsFor(clone);
 		app.runtime.cloneCount--;
+	}
+
+	function primURL(b:Block):void {
+		var url:URLRequest = new URLRequest(interp.arg(b, 0));
+		navigateToURL(url, “_blank”);
 	}
 }}
