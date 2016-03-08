@@ -225,6 +225,6 @@ public class Primitives {
 
 	function primURL(b:Block):void {
 		var url:URLRequest = new URLRequest(interp.arg(b, 0));
-		navigateToURL(url, “_blank”);
+		navigateToURL(url, "_blank");
 	}
 }}
