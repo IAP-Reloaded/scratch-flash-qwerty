@@ -296,8 +296,6 @@ public class Specs {
 		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
 
 		// sensing
-		["random color",		"r", 7, "randomcolor",			""],
-		["-"],
 		["touching %m.touching?",				"b", 7, "touching:",			""],
 		["touching color %c?",					"b", 7, "touchingColor:"],
 		["color %c is touching %c?",			"b", 7, "color:sees:"],
