@@ -47,7 +47,7 @@ public class Primitives {
 	}
 
 	public function addPrimsTo(primTable:Dictionary):void {
-		primTable["openURL"]		= primURL;
+		primTable["goToSite"]				= function(b:*):* { navigateToURL(interp.arg(b, 0), "_self") };
 
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
@@ -222,9 +222,12 @@ public class Primitives {
 		app.interp.stopThreadsFor(clone);
 		app.runtime.cloneCount--;
 	}
+<<<<<<< HEAD
 
 	function primURL(b:Block):void {
 		var url:URLRequest = new URLRequest(interp.arg(b, 0));
 		navigateToURL(url, "_blank");
 	}
+=======
+>>>>>>> parent of bb6b593... Added primitives for opening URL
 }}
