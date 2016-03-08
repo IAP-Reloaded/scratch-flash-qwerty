@@ -221,13 +221,4 @@ public class Primitives {
 		clone.parent.removeChild(clone);
 		app.interp.stopThreadsFor(clone);
 		app.runtime.cloneCount--;
-	}
-<<<<<<< HEAD
-
-	function primURL(b:Block):void {
-		var url:URLRequest = new URLRequest(interp.arg(b, 0));
-		navigateToURL(url, "_blank");
-	}
-=======
->>>>>>> parent of bb6b593... Added primitives for opening URL
 }}
