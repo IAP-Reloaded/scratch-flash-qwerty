@@ -55,11 +55,11 @@ public class Specs {
 	public static var parameterColor:int = 0x5947B1;
 	public static var extensionsColor:int = 0x607D8B; // 0x72228C; // 0x672D79;
 
-	private static const undefinedColor:int = 0xF4433;
+	private static const undefinedColor:int = 0xF44336;
 
 	public static const categories:Array = [
 	 // id   category name	color
-		[0,  "undefined",	0xF4433],//m
+		[0,  "undefined",	0xF44336],//m
 		[1,  "Motion",		0x3F51B5],//m
 		[2,  "Looks",		0x673AB7],//m
 		[3,  "Sound",		0x9C27B0],//m
@@ -73,7 +73,7 @@ public class Specs {
 		[11, "Parameter",	parameterColor],
 		[12, "List",		listColor],//m
 		[20, "Extension",	extensionsColor],//m
-                [13, "Debug",     0xF4433], //m
+                [13, "Debug",     0xF44336], //m
                 [14, "Internet",     0xE91E63], //m
 	];
 
