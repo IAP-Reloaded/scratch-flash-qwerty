@@ -253,19 +253,17 @@ public class Specs {
 
 		// control - sprite
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
-		["wait until %b",						" ", 6, "doWaitUntil"],
-		["-"],
-		["forever",								"cf",6, "doForever"],
-		["forever if %b",						"cf", 6, "doForeverIf"],
 		["-"],
 		["repeat %n",							"c", 6, "doRepeat", 10],
-		["repeat until %b",						"c", 6, "doUntil"],
+		["forever",								"cf",6, "doForever"],
 		["-"],
 		["if %b then",							"c", 6, "doIf"],
 		["if %b then",							"e", 6, "doIfElse"],
-		["-"],
+		["wait until %b",						" ", 6, "doWaitUntil"],
+		["repeat until %b",						"c", 6, "doUntil"],
 		["for each %m.varName in %s",			"c", 6, "doForLoop", "v", 10],
 		["while %b",							"c", 6, "doWhile"],
+		["-"],
 		["all at once",							"c", 6, "warpSpeed"],
 		["-"],
 		["stop %m.stop",						"f", 6, "stopScripts", "all"],
@@ -426,6 +424,7 @@ public class Specs {
 		["stop all",							"f", 98, "stopAll"],
 		["switch to background %m.costume",		" ", 98, "showBackground:", "backdrop1"],
 		["next background",						" ", 98, "nextBackground"],
+		["forever if %b",						"cf", 6, "doForeverIf"],
 
 		// stage motion (scrolling)
 		["scroll right %n",						" ", 99, "scrollRight",		10],
@@ -435,10 +434,7 @@ public class Specs {
 		["y scroll",							"r", 99, "yScroll"],
 
 		// internet
-<<<<<<< HEAD
-		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/"],
-=======
->>>>>>> parent of b72f1ce... Added block to open URL
+		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/],
 
 		// debug
 		["comment %s",					" ", 13, "",						"Insert comment here"],
@@ -452,4 +448,4 @@ public class Specs {
 
 	public static var extensionSpecs:Array = ["when %m.booleanSensor", "when %m.sensor %m.lessMore %n", "sensor %m.booleanSensor?", "%m.sensor sensor value", "turn %m.motor on for %n secs", "turn %m.motor on", "turn %m.motor off", "set %m.motor power to %n", "set %m.motor2 direction to %m.motorDirection", "when distance %m.lessMore %n", "when tilt %m.eNe %n", "distance", "tilt"];
 
-}
+}}
