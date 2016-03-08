@@ -107,7 +107,7 @@ public class Specs {
 		if (name == "stopSign") icon = Resources.createBmp('stopIcon');
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
-		if (icon != null) icon.scaleX = icon.scaleY = 0.5;
+		if (icon != null) icon.scaleX = icon.scaleY = 0.3;
 		return icon;
 	}
 
@@ -253,19 +253,17 @@ public class Specs {
 
 		// control - sprite
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
-		["wait until %b",						" ", 6, "doWaitUntil"],
-		["-"],
-		["forever",								"cf",6, "doForever"],
-		["forever if %b",						"cf", 6, "doForeverIf"],
 		["-"],
 		["repeat %n",							"c", 6, "doRepeat", 10],
-		["repeat until %b",						"c", 6, "doUntil"],
+		["forever",								"cf",6, "doForever"],
 		["-"],
 		["if %b then",							"c", 6, "doIf"],
 		["if %b then",							"e", 6, "doIfElse"],
-		["-"],
+		["wait until %b",						" ", 6, "doWaitUntil"],
+		["repeat until %b",						"c", 6, "doUntil"],
 		["for each %m.varName in %s",			"c", 6, "doForLoop", "v", 10],
 		["while %b",							"c", 6, "doWhile"],
+		["-"],
 		["all at once",							"c", 6, "warpSpeed"],
 		["-"],
 		["stop %m.stop",						"f", 6, "stopScripts", "all"],
@@ -273,35 +271,36 @@ public class Specs {
 		["when I start as a clone",				"h", 6, "whenCloned"],
 		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
 		["delete this clone",					"f", 6, "deleteClone"],
+		["-"],
 
 		// control - stage
-		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
-		["wait until %b",						" ", 6, "doWaitUntil"],
+		["wait %n secs",						" ", 106, "wait:elapsed:from:",	1],
 		["-"],
-		["forever",								"cf",6, "doForever"],
-		["forever if %b",						"cf", 6, "doForeverIf"],
+		["repeat %n",							"c", 106, "doRepeat", 10],
+		["forever",								"cf",106, "doForever"],
 		["-"],
-		["repeat %n",							"c", 6, "doRepeat", 10],
-		["repeat until %b",						"c", 6, "doUntil"],
+		["if %b then",							"c", 106, "doIf"],
+		["if %b then",							"e", 106, "doIfElse"],
+		["wait until %b",						" ", 106, "doWaitUntil"],
+		["repeat until %b",						"c", 106, "doUntil"],
+		["for each %m.varName in %s",			"c", 106, "doForLoop", "v", 10],
+		["while %b",							"c", 106, "doWhile"],
 		["-"],
-		["if %b then",							"c", 6, "doIf"],
-		["if %b then",							"e", 6, "doIfElse"],
+		["all at once",							"c", 106, "warpSpeed"],
 		["-"],
-		["for each %m.varName in %s",			"c", 6, "doForLoop", "v", 10],
-		["while %b",							"c", 6, "doWhile"],
-		["all at once",							"c", 6, "warpSpeed"],
+		["stop %m.stop",						"f", 106, "stopScripts", "all"],
 		["-"],
-		["stop %m.stop",						"f", 6, "stopScripts", "all"],
-		["-"],
-		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
+		["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
 
 		// sensing
+		["random color",		"r", 7, "randomcolor",			""],
+		["-"],
 		["touching %m.touching?",				"b", 7, "touching:",			""],
 		["touching color %c?",					"b", 7, "touchingColor:"],
 		["color %c is touching %c?",			"b", 7, "color:sees:"],
 		["distance to %m.spriteOrMouse",		"r", 7, "distanceTo:",			""],
 		["-"],
-		["ask %s",						" ", 7, "doAsk", 				"How are you?"],
+		["ask %s and wait",						" ", 7, "doAsk", 				"What's your name?"],
 		["answer",								"r", 7, "answer"],
 		["-"],
 		["key %m.key pressed?",					"b", 7, "keyPressed:",			"any"],
