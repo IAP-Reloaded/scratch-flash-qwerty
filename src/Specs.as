@@ -435,7 +435,10 @@ public class Specs {
 		["y scroll",							"r", 99, "yScroll"],
 
 		// internet
+<<<<<<< HEAD
 		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/"],
+=======
+>>>>>>> parent of b72f1ce... Added block to open URL
 
 		// debug
 		["comment %s",					" ", 13, "",						"Insert comment here"],
