@@ -46,6 +46,7 @@ public class Primitives {
 		this.interp = interpreter;
 	}
 
+	public function addPrimsTo(primTable:Dictionary):void {
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
 
