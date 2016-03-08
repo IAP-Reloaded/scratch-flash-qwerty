@@ -303,7 +303,7 @@ public class Specs {
 		["color %c is touching %c?",			"b", 7, "color:sees:"],
 		["distance to %m.spriteOrMouse",		"r", 7, "distanceTo:",			""],
 		["-"],
-		["ask %s and wait",						" ", 7, "doAsk", 				"How are you?"],
+		["ask %s",						" ", 7, "doAsk", 				"How are you?"],
 		["answer",								"r", 7, "answer"],
 		["-"],
 		["key %m.key pressed?",					"b", 7, "keyPressed:",			"any"],
