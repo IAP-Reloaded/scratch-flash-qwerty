@@ -433,13 +433,12 @@ public class Specs {
 		["x scroll",							"r", 99, "xScroll"],
 		["y scroll",							"r", 99, "yScroll"],
 
-		// internet
-		["open url %s",						" ", 14, "openURL",						"https://scratch.mit.edu/],
 
 		// debug
-		["comment %s",					" ", 13, "",						"Insert comment here"],
+		["%s",					" ", 13, "",						"Insert comment here"],
 		["test hello world",						" ", 13, "helloWorld"],
 		["-"],
+		["noop",								"r", 13, "COUNT"],
 		["counter",								"r", 13, "COUNT"],
 		["clear counter",						" ", 13, "CLR_COUNT"],
 		["increase counter",						" ", 13, "INCR_COUNT"],
