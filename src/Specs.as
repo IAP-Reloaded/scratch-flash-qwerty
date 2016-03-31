@@ -230,7 +230,6 @@ public class Specs {
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
 		["when @stopSign clicked",				"h", 5, "whenStopSign"],
-		["restart project",				" ", 5, "startGreenFlags"],
 		["-"],
 		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
 		["-"],
@@ -267,6 +266,7 @@ public class Specs {
 		["all at once",							"c", 6, "warpSpeed"],
 		["-"],
 		["stop %m.stop",						"f", 6, "stopScripts", "all"],
+		["restart project",				" ", 6, "startGreenFlags"],
 		["-"],
 		["when I start as a clone",				"h", 6, "whenCloned"],
 		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
@@ -289,6 +289,7 @@ public class Specs {
 		["all at once",							"c", 106, "warpSpeed"],
 		["-"],
 		["stop %m.stop",						"f", 106, "stopScripts", "all"],
+		["restart project",				" ", 106, "startGreenFlags"],
 		["-"],
 		["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
 
