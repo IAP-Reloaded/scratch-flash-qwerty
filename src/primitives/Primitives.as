@@ -39,6 +39,8 @@ public class Primitives {
 	var interp:Interpreter;
 	var counter:int;
 
+	var MaxCloneCount:int = 300;
+
 	public function Primitives(app:Scratch, interpreter:Interpreter) {
 		this.app = app;
 		this.interp = interpreter;
@@ -48,7 +50,7 @@ public class Primitives {
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
 
-		primTable["setCloneLimit"]				= function(b:*):* { return false };
+		primTable["setCloneLimit"]				= 
 
 		// operators
 		primTable["false"]				= function(b:*):* { return false };
