@@ -446,7 +446,7 @@ public class Specs {
 
 
 		// debug
-		["%s",					" ", 13, "",						"Insert comment here"],
+		["%s",					" ", 13, "",						"add comment here..."],
 		["test hello world",						" ", 13, "helloWorld"],
 		["-"],
 		["noop",								"r", 13, "COUNT"],
