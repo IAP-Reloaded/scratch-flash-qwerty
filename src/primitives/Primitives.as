@@ -35,8 +35,6 @@ package primitives {
 
 public class Primitives {
 
-	const MaxCloneCount:int = 300;
-
 	var app:Scratch;
 	var interp:Interpreter;
 	var counter:int;
@@ -49,6 +47,9 @@ public class Primitives {
 	public function addPrimsTo(primTable:Dictionary):void {
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
+
+		primTable["setCloneLimit"]				= 
+	const MaxCloneCount:int = 300;
 
 		// operators
 		primTable["false"]				= function(b:*):* { return false };
