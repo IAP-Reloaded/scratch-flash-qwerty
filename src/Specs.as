@@ -49,22 +49,22 @@ public class Specs {
 	public static const listCategory:int = 12;
 	public static const extensionsCategory:int = 20;
 
-	public static var variableColor:int = 0xEE7D16; // Scratch 1.4: 0xF3761D
-	public static var listColor:int = 0xCC5B22; // Scratch 1.4: 0xD94D11
-	public static var procedureColor:int = 0x531E99; // 0x531E99;
+	public static var variableColor:int = 0xFF5722; // Scratch 1.4: 0xF3761D
+	public static var listColor:int = 0xBF360C; // Scratch 1.4: 0xD94D11
+	public static var procedureColor:int = 0x673AB7; // 0x531E99;
 	public static var parameterColor:int = 0x5947B1;
-	public static var extensionsColor:int = 0x4B4A60; // 0x72228C; // 0x672D79;
+	public static var extensionsColor:int = 0x607D8B; // 0x72228C; // 0x672D79;
 
 	private static const undefinedColor:int = 0xF44336;
 
 	public static const categories:Array = [
 	 // id   category name	color
 		[0,  "undefined",	0xF44336],//m
-		[1,  "Motion",		0x4a6cd4],
-		[2,  "Looks",		0x8a55d7],
+		[1,  "Motion",		0x3F51B5],//m
+		[2,  "Looks",		0x673AB7],//m
 		[3,  "Sound",		0x9C27B0],//m
-		[4,  "Pen",			0x0e9a6c]]//Scratch 1.4: 0x009870
-		[5,  "Events",		0xc88330],
+		[4,  "Pen",			0x009688], //m, Scratch 1.4: 0x009870
+		[5,  "Events",		0xF57F17],//m
 		[6,  "Control",		0xFBC02D],//m
 		[7,  "Sensing",		0x03A9F4],//m
 		[8,  "Operators",	0x8BC34A],//m
@@ -72,7 +72,7 @@ public class Specs {
 		[10, "More Blocks",	procedureColor],//m
 		[11, "Parameter",	parameterColor],
 		[12, "List",		listColor],//m
-		[20, "Extension",	extensionsColor],
+		[20, "Extension",	extensionsColor],//m
                 [13, "Debug",     0xF44336], //m
                 [14, "Internet",     0xE91E63], //m
 	];
@@ -234,7 +234,7 @@ public class Specs {
 		["-"],
 		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
 		["-"],
-		["when this sprite clicked",			"h", 5, "whenClicked"],
+		["when this sprite left clicked",			"h", 5, "whenClicked"],
 		["when this sprite right clicked",			"h", 5, "whenRightClicked"],
 		["when Stage right clicked",			"h", 105, "whenRightClicked"],
 		["-"],
@@ -304,7 +304,7 @@ public class Specs {
 		["answer",								"r", 7, "answer"],
 		["-"],
 		["key %m.key pressed?",					"b", 7, "keyPressed:",			"any"],
-		["mouse down?",							"b", 7, "mousePressed"],
+		["left mouse down?",							"b", 7, "mousePressed"],
 		["right mouse down?",							"b", 7, "rightMousePressed"],
 		["mouse x",								"r", 7, "mouseX"],
 		["mouse y",								"r", 7, "mouseY"],
@@ -322,6 +322,8 @@ public class Specs {
 		["-"],
 		["current %m.timeAndDate", 				"r", 7, "timeAndDate",			"minute"],
 		["days since 2000", 					"r", 7, "timestamp"],
+		["Scratch 2.0 days", 					"r", 7, "scratchDays"],
+		["-"],
 		["username",							"r", 7, "getUserName"],
 		["-"],
 		["operating system",							"r", 7, "getOS"],
@@ -335,7 +337,7 @@ public class Specs {
 		["answer",								"r", 107, "answer"],
 		["-"],
 		["key %m.key pressed?",					"b", 107, "keyPressed:",		"space"],
-		["mouse down?",							"b", 107, "mousePressed"],
+		["left mouse down?",							"b", 107, "mousePressed"],
 		["right mouse down?",							"b", 7, "rightMousePressed"],
 		["mouse x",								"r", 107, "mouseX"],
 		["mouse y",								"r", 107, "mouseY"],
@@ -353,6 +355,7 @@ public class Specs {
 		["-"],
 		["current %m.timeAndDate", 				"r", 107, "timeAndDate",		"minute"],
 		["days since 2000", 					"r", 107, "timestamp"],
+		["Scratch 2.0 days", 					"r", 107, "scratchDays"],
 		["-"],
 		["username",							"r", 107, "getUserName"],
 
@@ -442,6 +445,9 @@ public class Specs {
 		["counter",								"r", 13, "COUNT"],
 		["clear counter",						" ", 13, "CLR_COUNT"],
 		["increase counter",						" ", 13, "INCR_COUNT"],
+
+		// internet
+		["post %s to Slack",					" ", 14, "postToTropics",						"Hello, world!"],
 		
 	];
 
