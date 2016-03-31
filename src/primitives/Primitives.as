@@ -48,7 +48,7 @@ public class Primitives {
 		// clipboard
 		primTable["clipboardContents"]				= function(b:*):* { return false };
 
-		primTable["setCloneLimit"]				= var MaxCloneCount:Number = 300;
+		primTable["setCloneLimit"]				= function(b:*):* { return false };
 
 		// operators
 		primTable["false"]				= function(b:*):* { return false };
