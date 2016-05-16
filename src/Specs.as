@@ -63,7 +63,7 @@ public class Specs {
 		[1,  "Motion",		0x3F51B5],//m
 		[2,  "Looks",		0x673AB7],//m
 		[3,  "Sound",		0x9C27B0],//m
-		[4,  "Pen",			0x009688], //m, Scratch 1.4: 0x009870
+		[4,  "Graphics",			0x009688], //m, Scratch 1.4: 0x009870
 		[5,  "Events",		0xF57F17],//m
 		[6,  "Control",		0xFBC02D],//m
 		[7,  "Sensing",		0x03A9F4],//m
@@ -210,8 +210,8 @@ public class Specs {
 		["-"],
 		["stamp",								" ", 4, "stampCostume"],
 		["-"],
-		["pen down",							" ", 4, "putPenDown"],
-		["pen up",								" ", 4, "putPenUp"],
+		["enable pen",							" ", 4, "putPenDown"],
+		["disable pen",								" ", 4, "putPenUp"],
 		["-"],
 		["set pen color to %c",					" ", 4, "penColor:"],
 		["change pen color by %n",				" ", 4, "changePenHueBy:"],
