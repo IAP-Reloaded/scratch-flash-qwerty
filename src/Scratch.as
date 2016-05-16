@@ -74,7 +74,11 @@ import watchers.ListWatcher;
 
 public class Scratch extends Sprite {
 	// Version
+<<<<<<< HEAD
 	public static const versionString:String = 'v443';
+=======
+	public static const versionString:String = 'v446';
+>>>>>>> LLK/master
 	public static var app:Scratch; // static reference to the app, used for debugging
 
 	// Display modes
@@ -712,9 +716,13 @@ public class Scratch extends Sprite {
 		}
 	}
 
-	public function resetPlugin():void {
-		if (jsEnabled)
+	public function resetPlugin(whenDone:Function):void {
+		if (jsEnabled) {
 			externalCall('ScratchExtensions.resetPlugin');
+		}
+		if (whenDone != null) {
+			whenDone();
+		}
 	}
 
 	protected function step(e:Event):void {
@@ -1610,7 +1618,15 @@ public class Scratch extends Sprite {
 
 	public function externalCall(functionName:String, returnValueCallback:Function = null, ...args):void {
 		args.unshift(functionName);
-		var retVal:* = ExternalInterface.call.apply(ExternalInterface, args);
+		var retVal:*;
+		try {
+			retVal = ExternalInterface.call.apply(ExternalInterface, args);
+		}
+		catch (e:Error)
+		{
+			logException(e);
+			// fall through to below
+		}
 		if (returnValueCallback != null) {
 			returnValueCallback(retVal);
 		}

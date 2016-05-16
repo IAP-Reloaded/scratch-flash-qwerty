@@ -30,6 +30,7 @@ import flash.utils.ByteArray;
 import scratch.*;
 
 import svgeditor.objs.*;
+import svgeditor.objs.ISVGEditable;
 import svgeditor.tools.*;
 
 import svgutils.*;
@@ -741,9 +742,23 @@ public class ImageEdit extends Sprite {
 		setToolMode((this is SVGEdit) ? 'select' : 'bitmapSelect');
 
 		// If the tool wasn't canceled and an object was created then select it
+<<<<<<< HEAD
 		if (nextObject && (nextObject is Selection || nextObject.parent)) {
 			var s:Selection = (nextObject is Selection ? nextObject : new Selection([nextObject]));
 			(currentTool as ObjectTransformer).select(s);
+=======
+		var displayObject:DisplayObject = nextObject as DisplayObject;
+		if (nextObject &&
+				((displayObject && displayObject.parent && displayObject.width > 0 && displayObject.height > 0 ) || (nextObject is Selection))) {
+				if(!(this is SVGEdit)){
+					setToolMode("bitmapSelect");
+				}
+				var s:Selection = (nextObject is Selection ? nextObject : new Selection([nextObject]));
+				objectTransformer.select(s);
+		}
+		else if((this is SVGEdit) && repeatedTools.indexOf(lastToolMode) > -1){
+			setToolMode(lastToolMode);
+>>>>>>> LLK/master
 		}
 		saveContent();
 	}

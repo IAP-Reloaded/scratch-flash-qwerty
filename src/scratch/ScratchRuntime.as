@@ -21,33 +21,46 @@
 // John Maloney, September 2010
 
 package scratch {
+import assets.Resources;
+
+import blocks.Block;
+import blocks.BlockArg;
+
+import extensions.ExtensionManager;
+
 import flash.display.*;
 import flash.events.*;
-import flash.geom.Rectangle;
-import flash.geom.Point;
 import flash.geom.Matrix;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import flash.media.*;
 import flash.net.*;
 import flash.system.System;
 import flash.text.TextField;
 import flash.utils.*;
-import blocks.Block;
-import blocks.BlockArg;
+
 import interpreter.*;
+
+import leelib.util.flvEncoder.*;
+
+import logging.LogLevel;
+
 import primitives.VideoMotionPrims;
+
 import sound.ScratchSoundPlayer;
+
 import translation.*;
-import assets.Resources;
-import ui.media.MediaInfo;
+
 import ui.BlockPalette;
-import uiwidgets.DialogBox;
 import ui.RecordingSpecEditor;
 import ui.SharingSpecEditor;
+import ui.media.MediaInfo;
+
+import uiwidgets.DialogBox;
+
 import util.*;
+
 import watchers.*;
-import logging.LogLevel;
-import scratch.ReadyLabel;
-import leelib.util.flvEncoder.*;
 
 public class ScratchRuntime {
 
@@ -603,10 +616,8 @@ public class ScratchRuntime {
 	}
 
 	private function isUnofficialExtensionBlock(b:Block):Boolean {
-		var i:int = b.op.indexOf('.');
-		if(i == -1) return false;
-		var extName:String = b.op.substr(0, i);
-		return !app.extensionManager.isInternal(extName);
+		var extName:String = ExtensionManager.unpackExtensionName(b.op);
+		return extName && !app.extensionManager.isInternal(extName);
 	}
 
 	SCRATCH::allow3d
@@ -639,6 +650,7 @@ public class ScratchRuntime {
 
 	// hats whose triggering condition is currently true
 	protected var activeHats:Array = [];
+	protected var waitingHats:Array = []
 	protected function startEdgeTriggeredHats(hat:Block, target:ScratchObj):void {
 		if (!hat.isHat || !hat.nextBlock) return; // skip disconnected hats
 
@@ -663,33 +675,63 @@ public class ScratchRuntime {
 				activeHats.push(hat);
 			}
 		} else if (app.jsEnabled) {
-			var dotIndex:int = hat.op.indexOf('.');
-			if (dotIndex > -1) {
-				var extName:String = hat.op.substr(0, dotIndex);
-				if (app.extensionManager.extensionActive(extName)) {
-					var op:String = hat.op.substr(dotIndex+1);
-					var args:Array = hat.args;
-					var finalArgs:Array = new Array(args.length);
-					for (var i:uint=0; i<args.length; ++i)
-						finalArgs[i] = interp.arg(hat, i);
+			var unpackedOp:Array = ExtensionManager.unpackExtensionAndOp(hat.op);
+			var extName:String = unpackedOp[0];
+			if (extName && app.extensionManager.extensionActive(extName)) {
+				var op:String = unpackedOp[1];
+				var numArgs:uint = hat.args.length;
+				var finalArgs:Array = new Array(numArgs);
+				for (var i:uint = 0; i < numArgs; ++i)
+					finalArgs[i] = interp.arg(hat, i);
 
-					processExtensionReporter(hat, target, extName, op, finalArgs);
-				}
+				processExtensionReporter(hat, target, extName, op, finalArgs);
 			}
 		}
 	}
 
 	private function processExtensionReporter(hat:Block, target:ScratchObj, extName:String, op:String, finalArgs:Array):void {
 		// TODO: Is it safe to do this in a callback, or must it happen before we return from startEdgeTriggeredHats?
-		app.externalCall('ScratchExtensions.getReporter', function(triggerCondition:Boolean):void {
+		function triggerHatBlock(triggerCondition:Boolean):void {
 			if (triggerCondition) {
 				if (triggeredHats.indexOf(hat) == -1) { // not already trigged
 					// only start the stack if it is not already running
+
 					if (!interp.isRunning(hat, target)) interp.toggleThread(hat, target);
 				}
 				activeHats.push(hat);
 			}
-		}, extName, op, finalArgs);
+		}
+		if(!hat.isAsyncHat){
+			app.externalCall('ScratchExtensions.getReporter', triggerHatBlock, extName, op, finalArgs);
+		}
+		else{
+			//Tell the block to wait like a reporter, fire if true
+			if(hat.requestState == 0){
+				if(!interp.isRunning(hat, target)){
+					interp.toggleThread(hat, target, 0, true);
+				}
+			}
+			if(triggeredHats.indexOf(hat) >= 0){
+				activeHats.push(hat);
+			}
+		}
+	}
+
+	public function waitingHatFired(hat:Block, willExec:Boolean):Boolean{
+		if(willExec){
+			if(activeHats.indexOf(hat) < 0){
+				hat.showRunFeedback();
+				if(hat.forceAsync){
+					activeHats.push(hat);
+				}
+				return true;
+			}
+		}
+		else{
+			activeHats.splice(activeHats.indexOf(hat), 1);
+			triggeredHats.splice(triggeredHats.indexOf(hat), 1);
+		}
+		return false;
 	}
 
 	private function processEdgeTriggeredHats():void {
@@ -820,9 +862,10 @@ public class ScratchRuntime {
 			if (spr) spr.setDirection(spr.direction);
 		}
 
-		app.resetPlugin();
-		app.extensionManager.clearImportedExtensions();
-		app.extensionManager.loadSavedExtensions(project.info.savedExtensions);
+		app.resetPlugin(function():void {
+			app.extensionManager.clearImportedExtensions();
+			app.extensionManager.loadSavedExtensions(project.info.savedExtensions);
+		});
 		app.installStage(project);
 		app.updateSpriteLibrary(true);
 		// set the active sprite
