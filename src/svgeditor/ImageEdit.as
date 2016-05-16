@@ -753,7 +753,6 @@ class ImageEdit extends Sprite {
 		}
 		else if((this is SVGEdit) && repeatedTools.indexOf(lastToolMode) > -1){
 			setToolMode(lastToolMode);
->>>>>>> LLK/master
 		}
 		saveContent();
 	}
