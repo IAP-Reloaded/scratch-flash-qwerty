@@ -177,7 +177,7 @@ public class Scratch extends Sprite {
 
 		stage.align = StageAlign.TOP_LEFT;
 		stage.scaleMode = StageScaleMode.NO_SCALE;
-		stage.frameRate = 30;
+		stage.frameRate = 60;
 
 		if (stage.hasOwnProperty('color')) {
 			// Stage doesn't have a color property on Air 2.6, and Linux throws if you try to set it anyway.
