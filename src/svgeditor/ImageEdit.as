@@ -3,16 +3,16 @@
  * Copyright (C) 2014 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
+ * modify it under the terms of the GNU General License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU General License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU General License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
@@ -44,36 +44,36 @@ import uiwidgets.*;
 
 import util.ProjectIO;
 
-public class ImageEdit extends Sprite {
+class ImageEdit extends Sprite {
 
-	public var app:Scratch;
-	public var imagesPart:ImagesPart;
-	public var targetCostume:ScratchCostume;
-	public var isScene:Boolean;
+	var app:Scratch;
+	var imagesPart:ImagesPart;
+	var targetCostume:ScratchCostume;
+	var isScene:Boolean;
 
-	protected var toolMode:String;
-	protected var lastToolMode:String;
-	protected var currentTool:SVGTool;
-	protected var drawPropsUI:DrawPropertyUI;
-	protected var toolButtons:Object;
-	protected var toolButtonsLayer:Sprite;
-	protected var w:int, h:int;
-	protected var workArea:ImageCanvas;
+	var toolMode:String;
+	var lastToolMode:String;
+	var currentTool:SVGTool;
+	var drawPropsUI:DrawPropertyUI;
+	var toolButtons:Object;
+	var toolButtonsLayer:Sprite;
+	var w:int, h:int;
+	var workArea:ImageCanvas;
 
-	private var uiLayer:Sprite;
-	private var toolsLayer:Sprite;
-	private var svgEditorMask:Shape;
-	private var currentCursor:String;
+	var uiLayer:Sprite;
+	var toolsLayer:Sprite;
+	var svgEditorMask:Shape;
+	var currentCursor:String;
 
-	private function get segmentationTool():BitmapBackgroundTool {
+	function get segmentationTool():BitmapBackgroundTool {
 		return currentTool as BitmapBackgroundTool;
 	}
 
-	public function clickedOutsideBitmap(evt:MouseEvent):Boolean {
+	function clickedOutsideBitmap(evt:MouseEvent):Boolean {
 		return evt.target == imagesPart;
 	}
 
-	public function ImageEdit(app:Scratch, imagesPart:ImagesPart) {
+	function ImageEdit(app:Scratch, imagesPart:ImagesPart) {
 		this.app = app;
 		this.imagesPart = imagesPart;
 
@@ -111,7 +111,7 @@ public class ImageEdit extends Sprite {
 		selectHandler();
 	}
 
-	public static function strings():Array {
+	static function strings():Array {
 		var result:Array = ['Shift:', 'Select and duplicate'];
 		var toolEntries:Array = SVGEdit.tools.concat(BitmapEdit.bitmapTools);
 		for each (var entry:Object in toolEntries) {
@@ -123,17 +123,17 @@ public class ImageEdit extends Sprite {
 		return result;
 	}
 
-	public function editingScene():Boolean { return isScene }
-	public function getCanvasLayer():Sprite { return workArea.getInteractionLayer() }
-	public function getContentLayer():Sprite { return workArea.getContentLayer() }
-	public function getShapeProps():DrawProperties { return drawPropsUI.settings }
-	public function setShapeProps(props:DrawProperties):void { drawPropsUI.settings = props }
-	public function getStrokeSmoothness():Number { return drawPropsUI.getStrokeSmoothness() }
-	public function getToolsLayer():Sprite { return toolsLayer }
-	public function getWorkArea():ImageCanvas { return workArea }
+	function editingScene():Boolean { return isScene }
+	function getCanvasLayer():Sprite { return workArea.getInteractionLayer() }
+	function getContentLayer():Sprite { return workArea.getContentLayer() }
+	function getShapeProps():DrawProperties { return drawPropsUI.settings }
+	function setShapeProps(props:DrawProperties):void { drawPropsUI.settings = props }
+	function getStrokeSmoothness():Number { return drawPropsUI.getStrokeSmoothness() }
+	function getToolsLayer():Sprite { return toolsLayer }
+	function getWorkArea():ImageCanvas { return workArea }
 
 
-	public function handleDrop(obj:*):Boolean {
+	function handleDrop(obj:*):Boolean {
 		function insertCostume(c:ScratchCostume):void { addCostume(c, dropPoint) }
 		function insertSprite(spr:ScratchSprite):void { addCostume(spr.currentCostume(), dropPoint) }
 		var dropPoint:Point;
@@ -150,13 +150,13 @@ public class ImageEdit extends Sprite {
 		return false;
 	}
 
-	public function refreshCurrentTool():void {
+	function refreshCurrentTool():void {
 		if (currentTool) currentTool.refresh();
 	}
 
-	protected function selectHandler(event:Event = null):void {}
+	function selectHandler(event:Event = null):void {}
 
-	private function workAreaMouseHandler(event:MouseEvent):void {
+	function workAreaMouseHandler(event:MouseEvent):void {
 		if (event.type == MouseEvent.MOUSE_OVER && currentCursor != null) {
 			CursorTool.setCustomCursor(currentCursor);
 		}
@@ -171,8 +171,8 @@ public class ImageEdit extends Sprite {
 			workArea.getContentLayer().removeEventListener(MouseEvent.MOUSE_DOWN, workAreaMouseDown);
 	}
 
-	private var globalToolObject:ISVGEditable;
-	private function workAreaMouseDown(event:MouseEvent):void {
+	var globalToolObject:ISVGEditable;
+	function workAreaMouseDown(event:MouseEvent):void {
 		if (!CursorTool.tool) {
 			globalToolObject = null;
 			return;
@@ -227,7 +227,7 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public function setWidthHeight(w:int, h:int):void {
+	function setWidthHeight(w:int, h:int):void {
 		// Adjust my size and layout to the given width and height.
 		// Note: SVGEdit overrides this method to move the tools on the right side.
 		this.w = w;
@@ -251,7 +251,7 @@ public class ImageEdit extends Sprite {
 		refreshCurrentTool();
 	}
 
-	public function enableTools(enabled:Boolean):void {
+	function enableTools(enabled:Boolean):void {
 		uiLayer.mouseChildren = enabled;
 		uiLayer.alpha = enabled ? 1.0 : 0.6;
 		if (!enabled) {
@@ -259,16 +259,16 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public function isActive():Boolean {
+	function isActive():Boolean {
 		// Return true if the editor is currently showing.
 		if (!root) return false; // Note: The editor is removed from the display tree when it is inactive.
 		if (CursorTool.tool) return false;
 		return !app.mediaLibrary;
 	}
 
-	protected var clipBoard:*;
+	var clipBoard:*;
 
-	protected function stageKeyDownHandler(event:KeyboardEvent):Boolean {
+	function stageKeyDownHandler(event:KeyboardEvent):Boolean {
 		if (!isActive()) return true;
 		if (stage && (stage.focus is TextField || (stage.focus is SVGTextField &&
 				(stage.focus as SVGTextField).type == TextFieldType.INPUT))) return true;
@@ -322,7 +322,7 @@ public class ImageEdit extends Sprite {
 		return false;
 	}
 
-	public function updateShapeUI(obj:ISVGEditable):void {
+	function updateShapeUI(obj:ISVGEditable):void {
 		if (obj is SVGShape) {
 			var el:SVGElement = obj.getElement();
 			var props:DrawProperties = drawPropsUI.settings;
@@ -341,13 +341,13 @@ public class ImageEdit extends Sprite {
 	 null, // Space
 	 { name: 'path',			desc: 'Pencil' },
 	 ]*/
-	protected function getToolDefs():Array { return [] }
+	function getToolDefs():Array { return [] }
 
 	// May be overridden to return an array like this:
 	/*['tool1', 'tool3']*/
-	protected function getImmediateToolList():Array { return [] }
+	function getImmediateToolList():Array { return [] }
 
-	private function createTools():void {
+	function createTools():void {
 		var space:int = (this is BitmapEdit) ? 4 : 2; // normal space between buttons
 		var extraSpace:int = (this is BitmapEdit) ? 20 : 8;
 		var buttonSize:Point = (this is BitmapEdit) ? new Point(37, 33) : new Point(24, 22);
@@ -389,7 +389,7 @@ public class ImageEdit extends Sprite {
 		updateTranslation();
 	}
 
-	public function updateTranslation():void {
+	function updateTranslation():void {
 		var direction:String = (this is SVGEdit ? 'left' : 'right');
 		for each (var tool:* in getToolDefs()) {
 			if (!tool) continue;
@@ -402,7 +402,7 @@ public class ImageEdit extends Sprite {
 		if (drawPropsUI) drawPropsUI.updateTranslation();
 	}
 
-	private function addDrawPropsUI():void {
+	function addDrawPropsUI():void {
 		drawPropsUI = new DrawPropertyUI(this);
 		drawPropsUI.x = 200;
 		drawPropsUI.y = h - drawPropsUI.height - 40;
@@ -411,14 +411,14 @@ public class ImageEdit extends Sprite {
 		uiLayer.addChild(drawPropsUI);
 	}
 
-	public function registerToolButton(toolName:String, ib:IconButton):void {
+	function registerToolButton(toolName:String, ib:IconButton):void {
 		ib.name = toolName;
 		toolButtons[toolName] = ib;
 	}
 
-	public function translateContents(x:Number, y:Number):void {}
+	function translateContents(x:Number, y:Number):void {}
 
-	public function handleImmediateTool(btn:IconButton):void {
+	function handleImmediateTool(btn:IconButton):void {
 		if (!btn) return;
 
 		var s:Selection = null;
@@ -471,10 +471,10 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	protected function runImmediateTool(name:String, shiftKey:Boolean, s:Selection):void {}
+	function runImmediateTool(name:String, shiftKey:Boolean, s:Selection):void {}
 
 	// Override in SVGEdit to add more logic
-	protected function onColorChange(e:Event):void {
+	function onColorChange(e:Event):void {
 		var sel:Selection;
 		if (toolMode == 'select') {
 			sel = (currentTool as ObjectTransformer).getSelection();
@@ -501,7 +501,7 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	private function onFontChange(e:Event):void {
+	function onFontChange(e:Event):void {
 		var sel:Selection;
 		var obj:ISVGEditable;
 		var fontName:String = drawPropsUI.settings.fontName;
@@ -525,17 +525,17 @@ public class ImageEdit extends Sprite {
 		saveContent();
 	}
 
-	protected function fromHex(s:String):uint {
+	function fromHex(s:String):uint {
 		if (!s) return 0;
 		else return uint('0x' + s.substr(1));
 	}
 
-	static public function makeToolButton(str:String, b:Boolean, buttonSize:Point = null):Sprite {
+	static function makeToolButton(str:String, b:Boolean, buttonSize:Point = null):Sprite {
 		var bmp:Bitmap = (b ? Resources.createBmp(str + 'On') : Resources.createBmp(str + 'Off'));
 		return buttonFrame(bmp, b, buttonSize);
 	}
 
-	static public function buttonFrame(bmp:DisplayObject, b:Boolean, buttonSize:Point = null):Sprite {
+	static function buttonFrame(bmp:DisplayObject, b:Boolean, buttonSize:Point = null):Sprite {
 		var frameW:int = buttonSize ? buttonSize.x : bmp.width;
 		var frameH:int = buttonSize ? buttonSize.y : bmp.height;
 
@@ -562,7 +562,7 @@ public class ImageEdit extends Sprite {
 		return result;
 	}
 
-	private function selectTool(btn:IconButton):void {
+	function selectTool(btn:IconButton):void {
 		var newMode:String = (btn ? btn.name : 'select');
 		setToolMode(newMode, false, true);
 
@@ -571,10 +571,10 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public static const repeatedTools:Array = ['rect', 'ellipse', 'vectorRect', 'vectorEllipse', 'text'];
-	public static const selectionTools:Array = ['select', 'bitmapSelect'];
+	static const repeatedTools:Array = ['rect', 'ellipse', 'vectorRect', 'vectorEllipse', 'text'];
+	static const selectionTools:Array = ['select', 'bitmapSelect'];
 
-	public function setToolMode(newMode:String, bForce:Boolean = false, fromButton:Boolean = false):void {
+	function setToolMode(newMode:String, bForce:Boolean = false, fromButton:Boolean = false):void {
 		if (!fromButton && selectionTools.indexOf(newMode) != -1 && repeatedTools.indexOf(toolMode) != -1) {
 			lastToolMode = toolMode;
 		}
@@ -703,7 +703,7 @@ public class ImageEdit extends Sprite {
 		imagesPart.refreshUndoButtons();
 	}
 
-	protected function updateDrawPropsForTool(newMode:String):void {
+	function updateDrawPropsForTool(newMode:String):void {
 		if (newMode == 'rect' || newMode == 'vectorRect' || newMode == 'ellipse' || newMode == 'vectorEllipse')
 			drawPropsUI.toggleShapeUI(true, newMode == 'ellipse' || newMode == 'vectorEllipse');
 		else
@@ -734,19 +734,14 @@ public class ImageEdit extends Sprite {
 				strokeModes.indexOf(newMode) > -1, eraserModes.indexOf(newMode) > -1);
 	}
 
-	public function setCurrentColor(col:uint, alpha:Number):void {
+	function setCurrentColor(col:uint, alpha:Number):void {
 		drawPropsUI.setCurrentColor(col, alpha);
 	}
 
-	public function endCurrentTool(nextObject:* = null):void {
+	function endCurrentTool(nextObject:* = null):void {
 		setToolMode((this is SVGEdit) ? 'select' : 'bitmapSelect');
 
 		// If the tool wasn't canceled and an object was created then select it
-<<<<<<< HEAD
-		if (nextObject && (nextObject is Selection || nextObject.parent)) {
-			var s:Selection = (nextObject is Selection ? nextObject : new Selection([nextObject]));
-			(currentTool as ObjectTransformer).select(s);
-=======
 		var displayObject:DisplayObject = nextObject as DisplayObject;
 		if (nextObject &&
 				((displayObject && displayObject.parent && displayObject.width > 0 && displayObject.height > 0 ) || (nextObject is Selection))) {
@@ -763,7 +758,7 @@ public class ImageEdit extends Sprite {
 		saveContent();
 	}
 
-	public function revertToCreateTool(e:MouseEvent):Boolean {
+	function revertToCreateTool(e:MouseEvent):Boolean {
 		// If just finished creating and placing a rect or ellipse, return to that tool.
 		if (selectionTools.indexOf(toolMode) != -1 && repeatedTools.indexOf(lastToolMode) != -1) {
 			setToolMode(lastToolMode);
@@ -779,7 +774,7 @@ public class ImageEdit extends Sprite {
 		return false;
 	}
 
-	protected function highlightTool(toolName:String):void {
+	function highlightTool(toolName:String):void {
 		// Hack! This method forces a given tool to be highlighted even if that's not the actual mode. Used to
 		// force shape buttons to stay highlighted even when moving the shape around with the select tool.
 		if (!toolName || (toolName == '')) return;
@@ -791,7 +786,7 @@ public class ImageEdit extends Sprite {
 	// Costume edit and save
 	//---------------------------------
 
-	public function editCostume(c:ScratchCostume, forStage:Boolean, force:Boolean = false):void {
+	function editCostume(c:ScratchCostume, forStage:Boolean, force:Boolean = false):void {
 		// Edit the given ScratchCostume
 		if ((targetCostume == c) && !force) return; // already editing
 
@@ -817,13 +812,13 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	protected function loadCostume(c:ScratchCostume):void {} // replace contents with the given costume
-	public function addCostume(c:ScratchCostume, where:Point):void {} // add costume to existing contents
+	function loadCostume(c:ScratchCostume):void {} // replace contents with the given costume
+	function addCostume(c:ScratchCostume, where:Point):void {} // add costume to existing contents
 
 	// MUST call app.setSaveNeeded();
-	public function saveContent(E:Event = null, undoable:Boolean = true):void {}
+	function saveContent(E:Event = null, undoable:Boolean = true):void {}
 
-	public function shutdown():void {
+	function shutdown():void {
 		// Called before switching costumes. Should commit any operations that were in
 		// progress (e.g. entering text). Forcing a re-select of the current tool should work.
 		setToolMode(toolMode, true);
@@ -834,17 +829,17 @@ public class ImageEdit extends Sprite {
 	// Zooming
 	//---------------------------------
 
-	public function getZoomAndScroll():Array { return workArea.getZoomAndScroll() }
-	public function setZoomAndScroll(zoomAndScroll:Array):void { return workArea.setZoomAndScroll(zoomAndScroll) }
-	public function updateZoomReadout():void { if (drawPropsUI) drawPropsUI.updateZoomReadout() }
+	function getZoomAndScroll():Array { return workArea.getZoomAndScroll() }
+	function setZoomAndScroll(zoomAndScroll:Array):void { return workArea.setZoomAndScroll(zoomAndScroll) }
+	function updateZoomReadout():void { if (drawPropsUI) drawPropsUI.updateZoomReadout() }
 
 	// -----------------------------
 	// Stamp and Flip Buttons
 	//------------------------------
 
-	public function stamp():void {}
+	function stamp():void {}
 
-	public function flipContent(vertical:Boolean):void {
+	function flipContent(vertical:Boolean):void {
 		var sel:Selection;
 		if (currentTool is ObjectTransformer) {
 			sel = (currentTool as ObjectTransformer).getSelection();
@@ -857,16 +852,16 @@ public class ImageEdit extends Sprite {
 		else flipAll(vertical);
 	}
 
-	protected function flipAll(vertical:Boolean):void {}
+	function flipAll(vertical:Boolean):void {}
 
 	// -----------------------------
 	// Clearing
 	//------------------------------
 
-	public function canClearCanvas():Boolean { return false }
+	function canClearCanvas():Boolean { return false }
 
 	// MUST call super
-	public function clearCanvas(ignore:* = null):void {
+	function clearCanvas(ignore:* = null):void {
 		if (currentTool is SVGEditTool)
 			(currentTool as SVGEditTool).setObject(null);
 		else
@@ -879,25 +874,25 @@ public class ImageEdit extends Sprite {
 	// Undo/Redo
 	//------------------------------
 
-	public function canUndo():Boolean {
+	function canUndo():Boolean {
 		return targetCostume && (targetCostume.undoList.length > 0) && (targetCostume.undoListIndex > 0);
 	}
 
-	public function canRedo():Boolean {
+	function canRedo():Boolean {
 		return targetCostume && (targetCostume.undoList.length > 0) &&
 				(targetCostume.undoListIndex < (targetCostume.undoList.length - 1)) &&
 				!targetCostume.segmentationState.lastMask;
 	}
 
-	public function canUndoSegmentation():Boolean {
+	function canUndoSegmentation():Boolean {
 		return segmentationTool && targetCostume.segmentationState.canUndo();
 	}
 
-	public function canRedoSegmentation():Boolean {
+	function canRedoSegmentation():Boolean {
 		return segmentationTool && targetCostume.segmentationState.canRedo() && !canRedo();
 	}
 
-	public function undo(ignore:* = null):void {
+	function undo(ignore:* = null):void {
 
 		//This is handled as a special case since clearSelection will commit a
 		//segmentation earlier than desired
@@ -912,7 +907,7 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public function redo(ignore:* = null):void {
+	function redo(ignore:* = null):void {
 
 		if (canRedoSegmentation()) {
 			redoSegmentation();
@@ -925,10 +920,10 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	protected function clearSelection():void {
+	function clearSelection():void {
 	}
 
-	protected final function recordForUndo(imgData:*, rotationCenterX:int, rotationCenterY:int):void {
+	final function recordForUndo(imgData:*, rotationCenterX:int, rotationCenterY:int):void {
 		if (!targetCostume) return;
 		if (targetCostume.undoListIndex < targetCostume.undoList.length) {
 			targetCostume.undoList = targetCostume.undoList.slice(0, targetCostume.undoListIndex + 1);
@@ -938,7 +933,7 @@ public class ImageEdit extends Sprite {
 		imagesPart.refreshUndoButtons();
 	}
 
-	private function installUndoRecord(undoRec:Array):void {
+	function installUndoRecord(undoRec:Array):void {
 		// Load image editor from the given undo state array.
 
 		var data:* = undoRec[0];
@@ -956,13 +951,13 @@ public class ImageEdit extends Sprite {
 		imagesPart.refreshUndoButtons();
 	}
 
-	protected function restoreUndoState(undoRec:Array):void { }
+	function restoreUndoState(undoRec:Array):void { }
 
 	// -----------------------------
 	// Cursor Tool Support
 	//------------------------------
 
-	private function workAreaMouseMove(event:MouseEvent):void {
+	function workAreaMouseMove(event:MouseEvent):void {
 		if (CursorTool.tool) {
 			var editable:ISVGEditable = SVGTool.staticGetEditableUnderMouse(this);
 			if (editable && editable == globalToolObject) {
@@ -974,7 +969,7 @@ public class ImageEdit extends Sprite {
 		app.clearTool();
 	}
 
-	public function setCurrentCursor(name:String, bmp:* = null, hotSpot:Point = null, reuse:Boolean = true):void {
+	function setCurrentCursor(name:String, bmp:* = null, hotSpot:Point = null, reuse:Boolean = true):void {
 		//trace('setting cursor to '+name);
 		if (name == null || [MouseCursor.HAND, MouseCursor.BUTTON].indexOf(name) > -1) {
 			currentCursor = (name == null ? MouseCursor.AUTO : name);
@@ -996,12 +991,12 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public function snapToGrid(toolsP:Point):Point {
+	function snapToGrid(toolsP:Point):Point {
 		// Overridden by BitmapEdit to snap to the nearest pixel.
 		return toolsP;
 	}
 
-	public function undoSegmentation():void {
+	function undoSegmentation():void {
 		if (segmentationTool) {
 			targetCostume.prevSegmentationState();
 			if (targetCostume.segmentationState.lastMask) {
@@ -1014,7 +1009,7 @@ public class ImageEdit extends Sprite {
 		}
 	}
 
-	public function redoSegmentation():void {
+	function redoSegmentation():void {
 		if (segmentationTool) {
 			targetCostume.nextSegmentationState();
 			if (targetCostume.segmentationState.lastMask) {
