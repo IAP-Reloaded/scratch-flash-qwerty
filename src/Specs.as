@@ -188,6 +188,9 @@ public class Specs {
 		// sound
 		["play sound %m.sound",					" ", 3, "playSound:",						"pop"],
 		["play sound %m.sound until done",		" ", 3, "doPlaySoundAndWait",				"pop"],
+		["-"],
+		["play from URL %s",					" ", 3, "playURL",						"pop"],
+		["play from URL %s until done",		" ", 3, "playURLAndWait",				"pop"],
 		["stop all sounds",						" ", 3, "stopAllSounds"],
 		["-"],
 		["play drum %d.drum for %n beats",		" ", 3, "playDrum",							1, 0.25],

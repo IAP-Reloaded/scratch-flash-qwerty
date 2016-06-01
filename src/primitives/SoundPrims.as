@@ -39,6 +39,19 @@ public class SoundPrims {
 		this.interp = interpreter;
 	}
 
+	function onLoadComplete(event:Event):void 
+	{    
+	  song = s.play();
+	  song.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);   
+	  s.removeEventListener( Event.COMPLETE, onLoadComplete );
+	}  
+
+	function soundCompleteHandler(event:Event):void 
+	{   
+	  trace( 'sound is complete' );  
+	  song.removeEventListener( Event.SOUND_COMPLETE, soundCompleteHandler );
+	}
+
 	public function addPrimsTo(primTable:Dictionary):void {
 		primTable["playSound:"]			= primPlaySound;
 		primTable["doPlaySoundAndWait"]	= primPlaySoundUntilDone;
@@ -55,6 +68,7 @@ public class SoundPrims {
 		primTable["changeVolumeBy:"]	= primChangeVolume;
 		primTable["setVolumeTo:"]		= primSetVolume;
 		primTable["volume"]				= primVolume;
+		primTable["playURL"]				= playURL;
 
 		primTable["changeTempoBy:"]		= function(b:*):* {
 			app.stagePane.setTempo(app.stagePane.tempoBPM + interp.numarg(b, 0));
@@ -186,6 +200,15 @@ public class SoundPrims {
 	private function primVolume(b:Block):Number {
 		var s:ScratchObj = interp.targetObj();
 		return (s != null) ? s.volume : 0;
+	}
+
+	private function playURL {
+	var url:String = "http://md9.ca/portfolio/music/seaforth.mp3"; 
+	var song:SoundChannel;
+	var request:URLRequest = new URLRequest(url);  
+	var s:Sound = new Sound();  
+	s.addEventListener(Event.COMPLETE, onLoadComplete );  
+	s.load(request);
 	}
 
 	// Map from a Scratch 1.4 (i.e. MIDI) instrument number to the closest Scratch 2.0 equivalent.
