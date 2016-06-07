@@ -1,3 +1,7 @@
+### Notice from IAP
+
+I am probably discontinuing QWERTY until Scratch 3.0 comes out. Or I may continue working on Scratch 2.0 QWERTY and Scratch 3.0 QWERTY at the same time. Or I may discontinue QWERTY forever/until someone else takes over.
+
 ## Scratch 2.0 editor and player [![Build Status](https://api.travis-ci.org/LLK/scratch-flash.svg?branch=master)](https://travis-ci.org/LLK/scratch-flash)
 This is the open source version of Scratch 2.0 and the core code for the official version found on http://scratch.mit.edu. This code has been released under the GPL version 2 license. Forks can be released under the GPL v2 or any later version of the GPL.
 
