@@ -1,5 +1,6 @@
-[![Stories in Ready](https://badge.waffle.io/IAP-Reloaded/scratch-flash-qwerty.png?label=ready&title=Ready)](https://waffle.io/IAP-Reloaded/scratch-flash-qwerty)
-### Notice from IAP
+[![Stories in Ready](https://badge.waffle.io/IAP-Reloaded/scratch-flash-qwerty.png?label=ready&title=Ready)](https://waffle.io/IAP-Reloaded/scratch-flash-qwerty) [![Gitter](https://badges.gitter.im/webmotes/Lobby.svg)](https://gitter.im/webmotes/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+### Notice from the Creator
 
 I am probably discontinuing QWERTY until Scratch 3.0 comes out. Or I may continue working on Scratch 2.0 QWERTY and Scratch 3.0 QWERTY at the same time. Or I may discontinue QWERTY forever/until someone else takes over.
 
