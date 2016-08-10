@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/IAP-Reloaded/scratch-flash-qwerty.png?label=ready&title=Ready)](https://waffle.io/IAP-Reloaded/scratch-flash-qwerty)
 ### Notice from IAP
 
 I am probably discontinuing QWERTY until Scratch 3.0 comes out. Or I may continue working on Scratch 2.0 QWERTY and Scratch 3.0 QWERTY at the same time. Or I may discontinue QWERTY forever/until someone else takes over.
